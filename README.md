@@ -4,3 +4,4 @@ This is a website development boilerplate using:
 - Supabase
 - OpenAI
 - Shadcn
+- Recoil

@@ -1,11 +1,11 @@
-import { createClient } from "../infrastructures/supabase/server";
+import { createClient } from "../infrastructures/supabase";
 import TABLES from "../infrastructures/supabase/tables";
 
 export default class DBRepository<Entity> {
   constructor(public table: keyof typeof TABLES) {}
   serverClient = createClient();
 
-  async create(requestData: Entity): Promise<string> {
+  async create(requestData: Partial<Entity>): Promise<string> {
     const { data, error } = await this.serverClient
       .from(this.table)
       .insert(requestData)
