@@ -1,4 +1,4 @@
-import { ProfileDTO } from "../entities/entity";
+import { ProfileDTO } from "../entities/profile.entity";
 
 export default class ProfileService {
   constructor(public profileObject: ProfileDTO) {

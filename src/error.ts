@@ -5,6 +5,31 @@ const ERROR = {
       message: "데이터를 찾을 수 없습니다.",
     },
   },
+  USE_CASE: {
+    INVALID_LOG_IN_CREDENTIALS: {
+      code: "INVALID_LOG_IN_CREDENTIALS",
+      message: "잘못된 이메일 또는 비밀번호입니다.",
+    },
+    SIGN_IN_FAIL: {
+      code: "SIGN_IN_FAIL",
+      message: "로그인에 실패했습니다.",
+    },
+    CANNOT_READ_PROFILE: {
+      code: "CANNOT_READ_PROFILE",
+      message: "프로필을 읽을 수 없습니다.",
+    },
+    FAIL_TO_SIGN_UP: {
+      code: "FAIL_TO_SIGN_UP",
+      message: "회원가입에 실패했습니다.",
+    },
+    SIGN_OUT_FAIL: {
+      code: "SIGN_OUT_FAIL",
+      message: "로그아웃에 실패했습니다.",
+    },
+  },
+  INFRASTRUCTURE: {},
+  SERVICE: {},
+  ENTITY: {},
 } as const;
 
 type AllowedErrorCodes = keyof (typeof ERROR)[keyof typeof ERROR];
