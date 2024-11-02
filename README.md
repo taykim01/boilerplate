@@ -12,3 +12,5 @@
 2. npx supabase login
 3. npx supabase init
 4. npx supabase gen types --lang=typescript --project-id "$PROJECT_REF" --schema public > src/data/daos/database.types.ts
+
+test
