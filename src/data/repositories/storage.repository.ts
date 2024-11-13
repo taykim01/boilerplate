@@ -2,12 +2,11 @@ import { createClient } from "../infrastructures/supabase";
 import BUCKETS from "../infrastructures/supabase/buckets";
 
 export default class StorageRepository {
-  supabase = createClient();
-
   constructor(public bucketName: keyof typeof BUCKETS) {}
 
   async uploadFile(file: File, filePath: string): Promise<string> {
-    const { data, error } = await this.supabase.storage
+    const supabase = await createClient();
+    const { data, error } = await supabase.storage
       .from(this.bucketName)
       .upload(filePath, file);
     if (error) throw new Error(error.message);
@@ -17,7 +16,8 @@ export default class StorageRepository {
   }
 
   async uploadBase64(base64String: string, filePath: string) {
-    const stoargeRef = this.supabase.storage.from(this.bucketName);
+    const supabase = await createClient();
+    const stoargeRef = supabase.storage.from(this.bucketName);
     const base64 = base64String.split("base64,")[1];
     const buffer = Buffer.from(base64, "base64");
     const { error } = await stoargeRef.upload(filePath, buffer, {

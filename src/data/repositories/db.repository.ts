@@ -3,10 +3,10 @@ import TABLES from "../infrastructures/supabase/tables";
 
 export default class DBRepository<Entity> {
   constructor(public table: keyof typeof TABLES) {}
-  serverClient = createClient();
 
   async create(requestData: Partial<Entity>): Promise<string> {
-    const { data, error } = await this.serverClient
+    const serverClient = await createClient();
+    const { data, error } = await serverClient
       .from(this.table)
       .insert(requestData)
       .select("id");
@@ -15,7 +15,8 @@ export default class DBRepository<Entity> {
   }
 
   async read(query: { [key: string]: string }): Promise<Entity[]> {
-    let querySnapshot = this.serverClient.from(this.table).select("*");
+    const serverClient = await createClient();
+    let querySnapshot = serverClient.from(this.table).select("*");
     for (const key in query) {
       querySnapshot = querySnapshot.eq(key, query[key]);
     }
@@ -25,7 +26,8 @@ export default class DBRepository<Entity> {
   }
 
   async update(id: string, requestData: Partial<Entity>) {
-    const { data, error } = await this.serverClient
+    const serverClient = await createClient();
+    const { data, error } = await serverClient
       .from(this.table)
       .update(requestData)
       .eq("id", id)
@@ -35,7 +37,8 @@ export default class DBRepository<Entity> {
   }
 
   async delete(id: string) {
-    const { data, error } = await this.serverClient
+    const serverClient = await createClient();
+    const { data, error } = await serverClient
       .from(this.table)
       .delete()
       .eq("id", id)

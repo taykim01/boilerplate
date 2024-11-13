@@ -27,7 +27,12 @@ const ERROR = {
       message: "로그아웃에 실패했습니다.",
     },
   },
-  INFRASTRUCTURE: {},
+  INFRASTRUCTURE: {
+    USER_NOT_FOUND: {
+      code: "USER_NOT_FOUND",
+      message: "사용자를 찾을 수 없습니다.",
+    },
+  },
   SERVICE: {},
   ENTITY: {},
 } as const;

@@ -1,12 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 
-export const createClient = () => {
-  const cookieStore = cookies() as unknown as UnsafeUnwrappedCookies;
+export const createClient = async () => {
+  const cookieStore = (await cookies()) as unknown as UnsafeUnwrappedCookies;
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_API_KEY!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
