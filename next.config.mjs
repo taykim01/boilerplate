@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
+const nextConfig = {
+    experimental: {
+      serverActions: {
+        bodySizeLimit: '5mb',
+      },
+    },
+    images: {
+      domains: ['projectID.supabase.co']
+    },
+    reactStrictMode: false,
+  };
+  
+  export default nextConfig;
+  

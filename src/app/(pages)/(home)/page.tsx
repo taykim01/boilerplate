@@ -1,3 +1,5 @@
-export default function Page() {
+import Components from "./components";
+
+export default async function Page() {
   return <></>;
 }

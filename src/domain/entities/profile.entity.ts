@@ -1,18 +1,13 @@
 import { DAO } from "@/data/daos/dao";
 
 interface Profile {
-  data: ProfileDTO;
+  data: DAO<"PROFILE">;
 }
 
-export type ProfileDTO = Omit<DAO<"PROFILE">, "id" | "created_at"> & {
-  id?: string;
-  created_at?: string;
-};
-
 export default class ProfileEntity implements Profile {
-  constructor(public data: ProfileDTO) {}
+  constructor(public data: DAO<"PROFILE">) {}
 
-  toDAO(): ProfileDTO {
+  toDAO(): DAO<"PROFILE"> {
     return this.data;
   }
 }

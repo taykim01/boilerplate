@@ -1,9 +1,5 @@
-import { ProfileDTO } from "../entities/profile.entity";
+import { DAO } from "@/data/daos/dao";
 
 export default class ProfileService {
-  constructor(public profileObject: ProfileDTO) {
-    ProfileService.vaildateNickname();
-  }
-
-  static async vaildateNickname() {}
+  constructor(public profileObject: DAO<"PROFILE">) {}
 }

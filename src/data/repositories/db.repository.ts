@@ -14,7 +14,9 @@ export default class DBRepository<Entity> {
     return data[0].id;
   }
 
-  async read(query: { [key: string]: string }): Promise<Entity[]> {
+  async read<K extends keyof Entity>(
+    query: Record<K, Entity[K]>
+  ): Promise<Entity[]> {
     const serverClient = await createClient();
     let querySnapshot = serverClient.from(this.table).select("*");
     for (const key in query) {

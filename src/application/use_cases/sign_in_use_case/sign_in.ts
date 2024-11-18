@@ -3,12 +3,12 @@
 import { createClient } from "@/data/infrastructures/supabase";
 import { ERROR } from "@/error";
 
-interface SignInDTO {
+export interface SignInDTO {
   email: string;
   password: string;
 }
 
-export default async function signInUseCase(dto: SignInDTO) {
+export default async function signIn(dto: SignInDTO) {
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({
     email: dto.email,

@@ -3,14 +3,14 @@
 import { createClient } from "@/data/infrastructures/supabase";
 import { ERROR } from "@/error";
 
-interface SignUpDTO {
+export interface SignUpDTO {
   email: string;
   password: string;
   nickname: string;
   major?: string;
 }
 
-export default async function signUpUseCase(dto: SignUpDTO) {
+export default async function signUp(dto: SignUpDTO) {
   const supabase = await createClient();
 
   const { error } = await supabase.auth.signUp({
